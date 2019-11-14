@@ -11,3 +11,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+#main_container {
+  width: 1000px;
+  margin: 20px auto;
+}
+
+
+body {
+  font-family: 'Rubik', sans-serif;
+}

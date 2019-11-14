@@ -1,3 +1,20 @@
-<h1>Here are the specs of <%= cocktail.name %></h1>
+<div id="main_container">
+  <div class="head_cocktail d-flex justify-content-between">
+    <h1>Want to make a <%= @cocktail.name %> ?</h1>
+    <%= link_to 'Edit Cocktail', new_cocktail_dose_path(@cocktail), class:'btn btn-outline-primary' %>
+    </div>
+
+  <div class="card-product">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="card-product-infos">
+      <% @cocktail.doses.each do |dose| %>
+      <h2><%= dose.ingredient.name %></h2>
+      <p><%= dose.description %></p>
+      <%= link_to 'destroy', dose_path, method: :delete %>
+    <% end %>
+    </div>
+  </div>
 
 
+  </div>
+</div>

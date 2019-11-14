@@ -1,1 +1,27 @@
-new.html.erb
+<div id="main_container">
+<h1>ADD A DOSE TO YOUR COCKTAIL</h1>
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <% if @dose.errors.any? %>
+    <div class="errors-container">
+      <ul>
+        <% @dose.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.input :description %>
+    <%= f.association :ingredient, collection: Ingredient.all.order(:name) %>
+  </div>
+  <%= f.submit class: 'btn btn-primary' %>
+
+
+  <%= link_to 'Go back to the cocktail', cocktails_path, class:'btn btn-outline-primary' %>
+<% end %>
+</div>
