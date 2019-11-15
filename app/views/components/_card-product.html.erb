@@ -1,0 +1,16 @@
+<div class="card-product pt-2 pl-2 pb-2 d-flex flex-column ">
+  <div class="title mt-1 mb-2">
+    <h2>Think something is missing?<br> Add it!</h2>
+  </div>
+  <div class="desc mb-3">
+    <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description %>
+    <%= f.association :ingredient,
+          input_html: { class: "recognitionStyling" },
+          collection: Ingredient.all.order(:name),
+          prompt: "-- SELECT ONE --"
+          %>
+    <%= f.submit 'Ajouter la dose', class: 'btn-ghost'%>
+  </div>
+<% end %>
+</div>

@@ -1,24 +1,32 @@
-<div id="main_container">
-<h1>ADD A NEW COCKTAIL</h1>
+<%= render 'components/banner-new' %>
 
-<%= simple_form_for(@cocktail) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="container mt-3 d-flex justify-content-center">
+    <div class="row">
+      <div class="card-trip p-4 mr-3">
 
-  <% if @cocktail.errors.any? %>
-    <div class="errors-container">
-      <ul>
-        <% @cocktail.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+      </div>
+      <div class="card-trip p-4">
+        <h1>ADD A NEW COCKTAIL</h1>
+        <%= simple_form_for(@cocktail) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <% if @cocktail.errors.any? %>
+            <div class="errors-container">
+              <ul>
+                <% @cocktail.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= f.input :name  %>
+          <%= f.input :description  %>
+          <%= f.input :photo, class:'btn btn-primary' %>
+          <%= f.input :photo_cache, as: :hidden %>
+          <%= f.submit class: 'btn btn-primary' %>
+          <%= link_to 'Go back to homepage', cocktails_path, class:'btn btn-outline-primary' %>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-  <%= f.input :name  %>
-  <%= f.input :photo, class:'btn btn-primary' %>
-  <%= f.input :photo_cache, as: :hidden %>
-  <%= f.submit class: 'btn btn-primary' %>
-
-  <%= link_to 'Go back to homepage', cocktails_path, class:'btn btn-outline-primary' %>
-<% end %>
-</div>
+  </div>

@@ -1,26 +1,35 @@
+<%= render 'components/banner-cocktail', cocktail: @cocktail  %>
+
 <div id="main_container">
-  <div class="head_cocktail d-flex justify-content-between">
-    <h1>Want to make a <%= @cocktail.name %> ?</h1>
-    <%= link_to 'Edit Cocktail', new_cocktail_dose_path(@cocktail), class:'btn btn-link align-middle' %>
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <div class="card-trip">
+        <%= image_tag "ingredients.jpg", crop: :fill %>
+        <div class="card-trip-infos d-flex flex-column justify-content-start">
+          <div>
+            <h2>Ingredients you'll need</h2>
+            <h2>-----------------------</h2>
+          </div>
+        <% @cocktail.doses.each do |dose| %>
+          <div class="mt-1 mb-1 d-flex flex-inline justify-content-between">
+            <p class="ml-3"><%= dose.description %> of <strong><%= dose.ingredient.name %></strong>
+            <div class="mr-3">
+              (<%= link_to 'Remove ingredient', dose_path(dose), method: :delete, class: 'mb-4' %>)</p>
+            </div>
+          </div>
+        <% end %>
+          <div>
+            <h2 class="mt-2">Make it right, follow these steps:</h2>
+            <h2>-----------------------</h2>
+            <%= simple_format(@cocktail.description) %>
+          </div>
+        </div>
+      </div>
     </div>
 
-  <div class="card-product">
-    <%= cl_image_tag @cocktail.photo, height: 100, width: 400, crop: :fill %>
-    <div class="card-product-infos">
-      <% @cocktail.doses.each do |dose| %>
-      <h2><%= dose.ingredient.name %></h2>
-      <p><%= dose.description %></p>
-      <%= link_to 'destroy', dose_path, method: :delete %>
-    <% end %>
+    <div class="col-xs-12 col-md-4">
+      <%= render 'components/card-product', cocktail: @cocktail, dose: @dose  %>
     </div>
-  </div>
-
-  <%= simple_form_for [@cocktail, @dose] do |f| %>
-    <%= f.input :description %>
-    <%= f.association :ingredient %>
-    <%= f.submit %>
-  <% end %>
-
 
   </div>
 </div>
