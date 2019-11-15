@@ -14,13 +14,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-  </div>
-
-
+  <%= f.input :name  %>
   <%= f.submit class: 'btn btn-primary' %>
+
   <%= link_to 'Go back to homepage', cocktails_path, class:'btn btn-outline-primary' %>
 <% end %>
 </div>

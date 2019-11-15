@@ -1,10 +1,14 @@
 <%= render 'components/banner' %>
 <div id="main_container">
   <h1>List of all cocktails available</h1>
-
-  <% @cocktails.each do |cocktail|%>
-    <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
-  <% end %>
 </div>
 
-
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-md-4">
+        <%= render 'components/card_category', cocktail: cocktail %>
+      </div>
+    <% end %>
+  </div>
+</div>
